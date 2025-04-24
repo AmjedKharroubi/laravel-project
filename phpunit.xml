@@ -29,7 +29,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
-        <env name="BZEZEELLL_YYYY" value="false"/>
+        <env name="BZEZEELLL_5555" value="false"/>
 
     </php>
 </phpunit>
