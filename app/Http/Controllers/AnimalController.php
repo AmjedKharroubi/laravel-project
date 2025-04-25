@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use App\Exports\AnimalsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class AnimalController extends Controller
 {
@@ -12,11 +15,21 @@ class AnimalController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        $animals = Animal::all();
-        return view('animals.index', compact('animals'));
+    public function index(Request $request)
+{
+    $query = Animal::query();
+    
+    if ($request->has('search')) {
+        $search = $request->search;
+        $query->where('type', 'like', "%$search%")
+              ->orWhere('breed', 'like', "%$search%")
+              ->orWhere('location', 'like', "%$search%");
     }
+    
+    $animals = $query->get();
+    
+    return view('animals.index', compact('animals'));
+}
 
     public function create()
     {
@@ -71,4 +84,12 @@ class AnimalController extends Controller
         $animal->delete();
         return redirect()->route('animals.index')->with('success', 'Animal removed successfully.');
     }
+    public function export()
+    {
+        return Excel::download(new AnimalsExport, 'animals.xlsx');
+    }
+
+    
+    
+    
 }

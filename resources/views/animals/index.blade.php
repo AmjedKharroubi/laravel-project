@@ -54,4 +54,23 @@
             </tbody>
         </table>
     </div>
+    <div class="mb-3">
+        <form action="{{ route('animals.index') }}" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search animals..." value="{{ request('search') }}">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a href="{{ route('animals.create') }}" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-plus-circle"></i> Register New Animal
+            </a>
+            <a href="{{ route('animals.export') }}" class="btn btn-sm btn-outline-success">
+                <i class="bi bi-download"></i> Export to Excel
+            </a>
+        </div>
+    </div>
+    
 @endsection

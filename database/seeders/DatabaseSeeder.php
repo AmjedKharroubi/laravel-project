@@ -2,22 +2,43 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Animal;
+use App\Models\InventoryItem;
+use App\Models\FinancialRecord;
+use App\Models\Report;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create admin user
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@farm.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
         ]);
+
+        // Create worker user
+        User::create([
+            'name' => 'Worker',
+            'email' => 'worker@farm.com',
+            'password' => bcrypt('password'),
+            'role' => 'worker',
+        ]);
+
+        // Create sample animals
+        Animal::factory(20)->create();
+
+        // Create sample inventory items
+        InventoryItem::factory(15)->create();
+
+        // Create sample financial records
+        FinancialRecord::factory(30)->create();
+
+        // Create sample reports
+        Report::factory(5)->create();
     }
 }

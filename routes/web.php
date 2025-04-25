@@ -27,4 +27,5 @@ Route::middleware(['auth'])->group(function () {
     
     // Reports
     Route::resource('reports', ReportController::class);
+    Route::get('/animals/export', [AnimalController::class, 'export'])->name('animals.export');
 });
