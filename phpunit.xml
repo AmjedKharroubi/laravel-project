@@ -29,7 +29,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
-        <env name="BEHY  " value="false"/>
+        <env name="BEHY behyy " value="false"/>
 
     </php>
 </phpunit>
